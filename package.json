@@ -1,6 +1,6 @@
 {
   "name": "chgk-shiro",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Online quiz game engine, inspired by russian tv show 'What? Where? When?' (Million Dollar Mind Game).",
   "main": "server.js",
   "repository": {
@@ -36,7 +36,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js --port=1337 --socket=socket.io"
   },
   "author": "",
   "license": "MIT"
