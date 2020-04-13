@@ -5,7 +5,7 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/alexindigo/shiro.git"
+    "url": "git://github.com/vasyaivanov/shiro.git"
   },
   "keywords": [
     "web",
@@ -28,9 +28,9 @@
     "level": "~*",
     "lodash": "*",
     "reqwest": "*",
-    "wigwam": "*",
-    "engine.io": "*",
-    "socket.io": "*"
+    "wigwam": "~0.1.2",
+    "engine.io": "~0.7.9",
+    "socket.io": "~0.9.16"
   },
   "devDependencies": {},
   "scripts": {
