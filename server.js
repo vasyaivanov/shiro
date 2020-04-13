@@ -122,7 +122,8 @@ function main()
 // start web server
 function startServer()
 {
-  wigwam.listen(envar('port'), envar('host'));
+  //wigwam.listen(envar('port'), envar('host'));
+  wigwam.listen(process.env.PORT);
   console.log('listening on '+(envar('host') ? envar('host') + ':' : '')+envar('port'));
 }
 
