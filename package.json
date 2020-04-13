@@ -1,6 +1,6 @@
 {
   "name": "chgk-shiro",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "Online quiz game engine, inspired by russian tv show 'What? Where? When?' (Million Dollar Mind Game).",
   "main": "server.js",
   "repository": {
@@ -20,17 +20,18 @@
     "million dollar mind game"
   ],
   "dependencies": {
-    "deeply": "*",
-    "ender-js": "*",
-    "async": "*",
-    "jeesh": "*",
-    "envar": "*",
-    "level": "~*",
-    "lodash": "*",
-    "reqwest": "*",
-    "wigwam": "~0.1.2",
-    "engine.io": "~0.7.9",
-    "socket.io": "~0.9.16"
+    "deeply": "0.1.0",
+    "ender-js": "0.5.0",
+    "async": "0.2.10",
+    "jeesh": "0.0.6",
+    "envar": "1.0.0",
+    "level": "6.0.1",
+    "lodash": "2.2.1",
+    "reqwest": "0.9.7",
+    "node-gyp": "6.1.0",
+    "wigwam": "0.1.2",
+    "engine.io": "0.7.14",
+    "socket.io": "0.9.19"
   },
   "devDependencies": {},
   "scripts": {
