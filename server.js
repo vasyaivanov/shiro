@@ -122,9 +122,13 @@ function main()
 // start web server
 function startServer()
 {
-  //wigwam.listen(envar('port'), envar('host'));
-  wigwam.listen(process.env.PORT);
-  console.log('listening on '+(envar('host') ? envar('host') + ':' : '')+envar('port'));
+  if(process && process.evn && process.env.PORT) {
+    wigwam.listen(process.env.PORT);
+    console.log('listening on '+ process.env.PORT);
+  } else {
+    wigwam.listen(envar('port'), envar('host'));
+    console.log('listening on '+(envar('host') ? envar('host') + ':' : '')+envar('port'));
+  }
 }
 
 // connect to db
