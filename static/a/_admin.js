@@ -316,7 +316,8 @@ Game.prototype._postInit = function Game__postInit()
     fields:
     [
       {type: 'textarea', name: 'text', title: 'question'},
-      {type: 'textarea', name: 'answer', title: 'answer'}
+      {type: 'textarea', name: 'answer', title: 'answer'},
+      {type: 'textarea', name: 'regex', title: 'regex'}
     ],
     controls:
     [
@@ -333,7 +334,8 @@ Game.prototype._postInit = function Game__postInit()
     [
       {type: 'checkbox', name: 'played', title: 'been played'},
       {type: 'textarea', name: 'text', title: 'question'},
-      {type: 'textarea', name: 'answer', title: 'answer'}
+      {type: 'textarea', name: 'answer', title: 'answer'},
+      {type: 'textarea', name: 'regex', title: 'regex'}
     ],
     controls:
     [
@@ -477,7 +479,7 @@ Game.prototype._toggleAddTeamModal = function Game__toggleAddTeamModal(show)
     {
       if (action == 'submit')
       {
-        _game.socket.write({ 'admin:add_team': {name: data.name, password: data.password} });
+        _game.socket.write({ 'admin:add_team': {name: data.name, password: data.password, regex: data.regex}, });
       }
     });
   }
@@ -575,7 +577,7 @@ Game.prototype._toggleAddQuestionModal = function Game__toggleAddQuestionModal(s
     {
       if (action == 'submit')
       {
-        _game.socket.write({ 'admin:add_question': {text: data.text, answer: data.answer} });
+        _game.socket.write({ 'admin:add_question': {text: data.text, answer: data.answer, regex: data.regex} });
       }
     });
   }
