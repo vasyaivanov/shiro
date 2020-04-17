@@ -346,13 +346,11 @@ Game.prototype.display = function Game_display(data)
   {
     this.questionText.html(data['question'].text);
     this.questionPanel.show();
-    document.getElementById("minute_mp3").play();
   }
   else
   {
     this.questionPanel.hide();
     this.questionText.html('');
-    document.getElementById("minute_mp3").pause();
   }
 
   // answer
