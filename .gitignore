@@ -3,3 +3,5 @@
 /node_modules/
 /test/tmp
 /sftp-config.json
+.DS_Store
+static/.DS_Store

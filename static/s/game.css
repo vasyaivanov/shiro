@@ -250,8 +250,8 @@
 .scoreboard_team_points
 {
   display: block;
-  min-width: 160px;
-  line-height: 34px;
+  min-width: 90px;
+  /* line-height: 34px; */
   font-size: 20px;
 }
 .scoreboard_team_name
@@ -282,6 +282,8 @@
   height: auto;
   padding: 5%;
   text-align: center;
+  background: url("/i/background.png");
+  background-size: cover;
   background-color: #ffffff;
 }
 .scoreboard:before,
@@ -306,7 +308,7 @@
 
 .question_text
 {
-  font-size: 18px;
+  font-size: 1.6em;
   color: #000000;
   white-space: pre-line;
   pointer-events: none;
@@ -393,6 +395,7 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  font-size: 1.7em;
 }
 
 /* hide text */
@@ -469,7 +472,7 @@
   height: 25%;
   padding-right: 5px;
   line-height: 0px;
-  font-size: 10px;
+  font-size: 1.6em;
   font-family: "Ubuntu", sans-serif;
   color: #999999;
   border-top: 1px solid #999999;
