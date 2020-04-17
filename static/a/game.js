@@ -294,7 +294,7 @@ Game.prototype.currentQuestion = function Game_currentQuestion(index)
     }
 
     // don't do anything if current question was reset
-    if (!( this.questionInPlay === false) )
+    if (!( this.questionInPlay === index) )
     {
       this.questionInPlay = index;
 
