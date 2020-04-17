@@ -316,8 +316,6 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
-  font-size: 1.6em;
 }
 /* hide text */
 .question:after
@@ -349,7 +347,7 @@
   top: 10px;
   left: 10px;
   font-family: "Ubuntu", sans-serif;
-  font-size: 1.6em;
+  font-size: 36px;
   color: #cccccc;
   opacity: 0.5;
 }
@@ -397,7 +395,6 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  font-size: 1.6em;
 }
 
 /* hide text */
