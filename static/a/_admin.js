@@ -155,7 +155,12 @@ Game.prototype._postInit = function Game__postInit()
 
     question = $(this).attr('id').replace(/^gameplay_question_/, '');
 
-    if (!question) return;
+    // typecast to differentiate between false and "0" because of === sign in pickQuestion method
+    if(!isNaN(question)) {
+      question = parseInt(question);
+    }
+
+    if (question === false) return;
 
     e.stop();
 
@@ -376,13 +381,13 @@ Game.prototype.startStopTimer = function Game_startStopTimer()
 
 Game.prototype.pickQuestion = function Game_pickQuestion(index)
 {
-  if (this.questionInPlay != index)
+  if (!(this.questionInPlay === index))
   {
     this.socket.write({ 'admin:set_question': {index: index} });
   }
   else // unset
   {
-    this.socket.write({ 'admin:set_question': {index: 0} });
+    this.socket.write({ 'admin:set_question': {index: false} });
   }
 }
 
