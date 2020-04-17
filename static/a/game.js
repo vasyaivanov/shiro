@@ -51,7 +51,7 @@ function Game(options)
   this.teams     = [];
   this.questions = [];
 
-  this.questionInPlay = 0;
+  this.questionInPlay = false;
 
   // init
   this.init();
@@ -285,17 +285,19 @@ Game.prototype.setQuestions = function Game_setQuestions(questions)
 
 Game.prototype.currentQuestion = function Game_currentQuestion(index)
 {
-  if (this.questionInPlay != index)
+  if (! (this.questionInPlay === index))
   {
     // unselect previous one
-    if (this.questionInPlay)
+    if (!(this.questionInPlay === false ))
     {
       $('#gameplay_question_'+this.questionInPlay).removeClass('gameplay_question_playing');
     }
 
     // don't do anything if current question was reset
-    if (this.questionInPlay = index)
+    if (!( this.questionInPlay === false) )
     {
+      this.questionInPlay = index;
+
       $('#gameplay_question_'+this.questionInPlay).addClass('gameplay_question_playing');
     }
   }
@@ -550,7 +552,7 @@ Game.prototype._displayTeamsChart = function Game__displayTeamsChart()
     ;
 
   // sanity check
-  if (!this.questionInPlay)
+  if (this.questionInPlay == false)
   {
     panel.hide();
     return;
