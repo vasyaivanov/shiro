@@ -20,20 +20,22 @@
     "million dollar mind game"
   ],
   "dependencies": {
+    "async": "0.2.10",
     "deeply": "0.1.0",
     "ender-js": "0.5.0",
-    "async": "0.2.10",
-    "jeesh": "0.0.6",
+    "engine.io": "0.7.14",
     "envar": "1.0.0",
+    "jeesh": "0.0.6",
     "level": "6.0.1",
     "lodash": "2.2.1",
-    "reqwest": "0.9.7",
-    "node-gyp": "6.1.0",
     "node": "12.16.1",
+    "node-gyp": "6.1.0",
     "npm": "6.13.4",
-    "wigwam": "0.1.2",
-    "engine.io": "0.7.14",
-    "socket.io": "0.9.19"
+    "redis": "^3.0.2",
+    "redisscan": "^2.0.0",
+    "reqwest": "0.9.7",
+    "socket.io": "0.9.19",
+    "wigwam": "0.1.2"
   },
   "devDependencies": {},
   "scripts": {
