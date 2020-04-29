@@ -521,6 +521,19 @@ Game.prototype._renderTimer = function Game__renderTimer()
   // extra treatment for the last 10 seconds
   this._timerContainer.classed('timer_running_out', (_game.timerCounting.tick > 49))
 
+  // sound beginning minute
+  if(_game.timerCounting.tick == 1) {
+    new Audio("/m/minute_start_end.mp3").play();
+  }
+  // sound beginning minute
+  if(_game.timerCounting.tick == 50) {
+    new Audio("/m/minute_50seconds.mp3").play();
+  }
+  // sound end minute
+  if(_game.timerCounting.tick == 60) {
+    new Audio("/m/minute_start_end.mp3").play();
+  }
+
   item = this._timerContainer.selectAll('.timer_tick')
     .data(this._timerTicksList)
     .order()
