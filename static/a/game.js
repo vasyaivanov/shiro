@@ -591,6 +591,12 @@ Game.prototype._drawTeamAnswerChartStub = function Game__drawTeamAnswerChartStub
     , html    = ''
     ;
 
+  // shorten name so many teams can be displayed
+  var shortname = d.name;
+  if(d.name.length > 3) 
+  {
+    shortname = d.name.substring(0,4);
+  }
   html += '<span class="answer_teams_chart_team_name">'+d.name+'</span>';
   html += '<span style="height: '+(time / 60 * 100)+'%" class="answer_teams_chart_team_bar"></span>';
 

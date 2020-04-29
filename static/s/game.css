@@ -485,7 +485,7 @@
   height: 25%;
   padding-right: 5px;
   line-height: 0px;
-  font-size: 1.6em;
+  font-size: 1.0em;
   font-family: "Ubuntu", sans-serif;
   color: #999999;
   border-top: 1px solid #999999;
@@ -510,7 +510,7 @@
   width: auto;
   height: 5px;
   line-height: 28px;
-  font-size: 9px;
+  font-size: 8px;
   font-family: "Ubuntu", sans-serif;
   color: #999999;
   border-right: 1px solid #999999;
