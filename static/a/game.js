@@ -402,6 +402,11 @@ Game.prototype._renderTeams = function Game__renderTeams()
   // sort
   this.teams.sort(this._sortTeams);
 
+  for (var key in this.teams) 
+  {
+    this.teams[key].place=parseInt(key)+1;
+  }
+
   item = this._container.selectAll('.scoreboard_team')
     .data(this.teams)
     .order()
@@ -427,7 +432,7 @@ Game.prototype._drawTeamStub = function Game__drawTeamStub(_game, d)
     , html = ''
     ;
 
-  html += '<span class="scoreboard_team_name">'+d.name+'</span>';
+  html += '<span class="scoreboard_team_name">'+d.place + '. ' + d.name+'</span>';
   html += '<span class="scoreboard_team_points">'+d.points+'<span class="scoreboard_team_fracs">.'+(frac < 10 ? '00'+frac : (frac < 100 ? '0' + frac : frac))+'</span></span>';
 
   el
@@ -597,7 +602,7 @@ Game.prototype._drawTeamAnswerChartStub = function Game__drawTeamAnswerChartStub
   {
     shortname = d.name.substring(0,4);
   }
-  html += '<span class="answer_teams_chart_team_name">'+d.name+'</span>';
+  html += '<span class="answer_teams_chart_team_name">' + d.place +'.' + d.name + '</span>';
   html += '<span style="height: '+(time / 60 * 100)+'%" class="answer_teams_chart_team_bar"></span>';
 
   el
