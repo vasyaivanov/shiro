@@ -183,7 +183,7 @@
 .gameplay_start_timer
 {
   position: absolute;
-  top: 8px;
+  top: 25px;
   right: 0px;
 }
   .gameplay_start_timer.timer_running_out
