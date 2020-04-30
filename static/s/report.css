@@ -19,19 +19,21 @@ body
 {
   display: block;
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 0%;
+  left: 25%;
   width: 60%;
   height: 100%;
   border: 1px solid #cccccc;
+  background-color: #ffffff;
+  z-index: 0;
 
   background-color: #ffffff;
-  -webkit-perspective: 100000px;
+/*  -webkit-perspective: 100000px;
   perspective: 100000px;
   -webkit-transform: translateX(-50%) translateY(-50%) rotateX(60deg) rotateZ(15deg);
   -webkit-transform-style: preserve-3d;
   transform: translateX(-50%) translateY(-50%) rotateX(60deg) rotateZ(15deg);
-  transform-style: preserve-3d;
+  transform-style: preserve-3d;*/
   z-index: 0;
 }
   .board.loading

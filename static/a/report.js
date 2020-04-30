@@ -116,8 +116,7 @@ $.domReady(function()
       .attr('data-name', function(d){ return d.name; })
       .attr('data-points', function(d)
       {
-        var frac = d.time_bonus && d.points ? Math.round(d.time_bonus / ((d.points - (d.adjustment || 0)) * 60000) * 1000) : 0;
-        return d.points + '.' + formatFrac(frac);
+        return d.points + '.' + time_bonus
       })
       ;
 
@@ -129,8 +128,7 @@ $.domReady(function()
       .attr('data-name', function(d){ return d.name; })
       .attr('data-points', function(d)
       {
-        var frac = d.time_bonus && d.points ? Math.round(d.time_bonus / ((d.points - (d.adjustment || 0)) * 60000) * 1000) : 0;
-        return d.points + '.' + formatFrac(frac);
+        return d.points + '.' + d.time_bonus
       })
       ;
 
