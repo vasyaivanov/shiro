@@ -705,7 +705,7 @@ Game.prototype._drawTeamStub = function Game__drawTeamStub(_game, d)
   // this here is a DOM element
   var el   = _game.d3.select(this)
     , isMe = (_game.user() && d.login == _game.user().login)
-    , frac = d.time_bonus && d.points ? Math.round(d.time_bonus / ((d.points - (d.adjustment || 0)) * 60000) * 1000) : 0
+    // , frac = d.time_bonus && d.points ? Math.round(d.time_bonus / ((d.points - (d.adjustment || 0)) * 60000) * 1000) : 0
     , bonus = $.reduce(d.answers, function(total, a){ return a.correct ? total + a.time[0] : total }, 0)
     , html = ''
     ;
@@ -714,7 +714,7 @@ Game.prototype._drawTeamStub = function Game__drawTeamStub(_game, d)
 
   html += '<span class="scoreboard_team_name">'+d.place + '. ' + d.name+'</span>';
   html += '<span class="scoreboard_team_time_bonus">:'+bonus+'</span>';
-  html += '<span class="scoreboard_team_points">'+d.points+'<span class="scoreboard_team_fracs">.'+(frac < 10 ? '00'+frac : (frac < 100 ? '0' + frac : frac))+'</span></span>';
+  html += '<span class="scoreboard_team_points">'+d.points+'<span class="scoreboard_team_fracs">.'+ d.time_bonus +'</span></span>';
   html += '<span class="scoreboard_team_controls"><span class="scoreboard_edit_team"></span><span class="scoreboard_delete_team"></span></span>';
 
   el

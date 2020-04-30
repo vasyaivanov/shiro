@@ -611,11 +611,11 @@ Game.prototype._drawTeamAnswerChartStub = function Game__drawTeamAnswerChartStub
 
   // shorten name so many teams can be displayed
   var shortname = d.name;
-  if(d.name.length > 3) 
+  if(d.name.length > 2) 
   {
-    shortname = d.name.substring(0,4);
+    shortname = d.name.substring(0,3);
   }
-  html += '<span class="answer_teams_chart_team_name">' + d.place +'.' + d.name + '</span>';
+  html += '<span class="answer_teams_chart_team_name">' + shortname + '</span>';
   html += '<span style="height: '+(time / 60 * 100)+'%" class="answer_teams_chart_team_bar"></span>';
 
   el

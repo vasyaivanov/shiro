@@ -35,42 +35,42 @@ $.domReady(function()
     }
   });
 
-  $('body').on('mousedown', function(e)
-  {
-    bodyDim = $('body').dim();
+  // $('body').on('mousedown', function(e)
+  // {
+  //   bodyDim = $('body').dim();
 
-    isRotating = true;
-    currentXY  = [e.pageX, e.pageY];
+  //   isRotating = true;
+  //   currentXY  = [e.pageX, e.pageY];
 
-    initAngle  = getAngle(e.pageX, e.pageY);
+  //   initAngle  = getAngle(e.pageX, e.pageY);
 
-    $('body').addClass('rotating');
-  });
-  $('body').on('mousemove', function(e)
-  {
-    var dY, angle;
+  //   $('body').addClass('rotating');
+  // });
+  // $('body').on('mousemove', function(e)
+  // {
+  //   var dY, angle;
 
-    if (isRotating)
-    {
-      angle = getAngle(e.pageX, e.pageY);
-      dY = e.pageY - currentXY[1];
+  //   if (isRotating)
+  //   {
+  //     angle = getAngle(e.pageX, e.pageY);
+  //     dY = e.pageY - currentXY[1];
 
-      rotatedXYZ[0] -= Math.floor((dY / bodyDim.height * 100) * 0.9);
-      currentXY[1] = e.pageY;
+  //     rotatedXYZ[0] -= Math.floor((dY / bodyDim.height * 100) * 0.9);
+  //     currentXY[1] = e.pageY;
 
-      rotatedXYZ[2] += angle - initAngle;
-      initAngle = angle;
+  //     rotatedXYZ[2] += angle - initAngle;
+  //     initAngle = angle;
 
-      boardPanel.css(vP+'transform', 'translateX(-50%) translateY(-50%) rotateX('+rotatedXYZ[0]+'deg) rotateY('+rotatedXYZ[1]+'deg) rotateZ('+rotatedXYZ[2]+'deg)');
-    }
-  });
-  $('body').on('mouseup', function()
-  {
-    isRotating = false;
-    currentXY  = [0, 0];
+  //     boardPanel.css(vP+'transform', 'translateX(-50%) translateY(-50%) rotateX('+rotatedXYZ[0]+'deg) rotateY('+rotatedXYZ[1]+'deg) rotateZ('+rotatedXYZ[2]+'deg)');
+  //   }
+  // });
+  // $('body').on('mouseup', function()
+  // {
+  //   isRotating = false;
+  //   currentXY  = [0, 0];
 
-    $('body').removeClass('rotating');
-  });
+  //   $('body').removeClass('rotating');
+  // });
 
   function renderTeams(teams, questions)
   {
@@ -169,9 +169,9 @@ $.domReady(function()
 
         inStyles.push('line-height: '+cubeSide+'px');
         inStyles.push('font-size: '+Math.floor(cubeSide/2)+'px');
-        inStyles.push('color: '+(d.correct === null ? '#999999' : '#ffffff'));
-        inStyles.push('-webkit-transform: rotateZ(90deg) translateZ('+tall+'px)');
-        inStyles.push('transform: rotateZ(90deg) translateZ('+tall+'px)');
+        // inStyles.push('color: '+(d.correct === null ? '#999999' : '#ffffff'));
+        // inStyles.push('-webkit-transform: rotateZ(90deg) translateZ('+tall+'px)');
+        // inStyles.push('transform: rotateZ(90deg) translateZ('+tall+'px)');
 
         pseudoStyles.push('.team_'+d.team+' .round_'+d.id+' .cube:before { left: -'+Math.ceil(tall/2)+'px; width: '+tall+'px; } ');
         pseudoStyles.push('.team_'+d.team+' .round_'+d.id+' .cube:after { right: -'+Math.ceil(tall/2)+'px; width: '+tall+'px; } ');
