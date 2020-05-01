@@ -523,15 +523,21 @@ Game.prototype._renderTimer = function Game__renderTimer()
 
   // sound beginning minute
   if(_game.timerCounting.tick == 1) {
-    new Audio("/m/minute_start_end.mp3").play();
+    var audio_start = new Audio("/m/minute_50seconds.mp3");
+    audio_start.volume = 0.03;
+    audio_start.play();
   }
   // sound beginning minute
   if(_game.timerCounting.tick == 50) {
-    new Audio("/m/minute_50seconds.mp3").play();
+    var audio_warning = new Audio("/m/minute_50seconds.mp3");
+    audio_warning.volume = 0.03;
+    audio_warning.play();
   }
   // sound end minute
   if(_game.timerCounting.tick == 60) {
-    new Audio("/m/minute_start_end.mp3").play();
+    var audio_end = new Audio("/m/minute_start_end.mp3");    
+    audio_end.volume = 0.03;
+    audio_end.play();
   }
 
   item = this._timerContainer.selectAll('.timer_tick')
