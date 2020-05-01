@@ -440,6 +440,7 @@ Game.prototype._drawTeamStub = function Game__drawTeamStub(_game, d)
   if(this.socket && this.socket.url && this.socket.url.baseURI && this.socket.url.baseURI.includes("admin.html")) {
     el.classed('scoreboard_team_online', d.online);
   }
+  
   el
     .classed('scoreboard_team', true)
     .classed('scoreboard_team_mine', isMe)
