@@ -7,6 +7,12 @@ Game.prototype._postInit = function Game__postInit()
 
   // --- local events
 
+  var teamName = "";
+  teamName = $.cookie("game:user").login;
+  if(teamName) {
+    document.title = teamName + " : " + document.title;
+  }
+
   // window has focus event
   visibilityChange(function(hasFocus)
   {
