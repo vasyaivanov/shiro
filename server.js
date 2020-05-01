@@ -126,13 +126,13 @@ function startServer()
 
     wigwam.listen(process.env.PORT);
 
-    // if(process.env.PORT == undefined) {
-    //   wigwam.listen(envar('port'), envar('host'));
-    //   console.log('listening on '+(envar('host') ? envar('host') + ':' : '')+envar('port'));  
-    // }else {
-    //   wigwam.listen(process.env.PORT);
-    //   console.log('listening on '+ process.env.PORT);
-    // }
+    if(process.env.PORT == undefined) {
+      wigwam.listen(envar('port'), envar('host'));
+      console.log('listening on '+(envar('host') ? envar('host') + ':' : '')+envar('port'));  
+    }else {
+      wigwam.listen(process.env.PORT);
+      console.log('listening on '+ process.env.PORT);
+    }
     
   // } else {
   //   wigwam.listen(envar('port'), envar('host'));
