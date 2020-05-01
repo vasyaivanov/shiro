@@ -23,6 +23,13 @@ Game.prototype._postInit = function Game__postInit()
     _game.socket.write({ 'team:visibility': !!hasFocus });
   });
 
+  // team logout
+  $('.logout_button').on('click', function(e)
+  {
+    _game._logout();
+    e.stop();
+  });
+
   // submit answer button
   $('.answer_form_messagebox_send').on('click', function(e)
   {
@@ -172,6 +179,22 @@ Game.prototype._login = function Game__login(instance)
   {
     this.socket.write({ 'game:auth': this.user() });
   }
+}
+
+Game.prototype._logout = function Game__logout(instance)
+{
+  // this.socket.write({ 'game:logout': this.user() });
+
+  // delete all cookies
+  var allCookies = document.cookie.split(';'); 
+  for (var i = 0; i < allCookies.length; i++) {
+      document.cookie = allCookies[i] + "=;expires="+ new Date(0).toUTCString(); 
+  }
+
+  this.socket.write({ 'disconnection': this.user() });
+
+  // refresh page after all cookies are delted
+  location.reload();
 }
 
 // handle logged event

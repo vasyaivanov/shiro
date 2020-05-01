@@ -54,11 +54,26 @@
   color: #555555;
   border-color: #999999;
 }
-  .answer_form_messagebox_send:hover
-  {
-    color: #dd3333;
-    border-color: #dd3333;
-  }
+.answer_form_messagebox_send:hover
+{
+  color: #dd3333;
+  border-color: #dd3333;
+}
+
+.logout_button
+{
+  color: #555555;
+  border-color: #999999;
+  position: absolute;
+  left: 5px;
+  bottom: 17px;
+  padding: 3px;
+}
+.logout_button:hover
+{
+  color: #dd3333;
+  border-color: #dd3333;
+} 
 
 /* has focus */
 
