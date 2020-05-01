@@ -378,7 +378,9 @@ Game.prototype.teamOnline = function Game_teamOnline(data, online)
     return;
   }
 
-  $('#scoreboard_team_'+data.login)[online ? 'addClass' : 'removeClass']('scoreboard_team_online');
+  if(this.socket && this.socket.url && this.socket.url.baseURI && this.socket.url.baseURI.includes("admin.html")) {
+    $('#scoreboard_team_'+data.login)[online ? 'addClass' : 'removeClass']('scoreboard_team_online');
+  }
 }
 
 
@@ -435,10 +437,13 @@ Game.prototype._drawTeamStub = function Game__drawTeamStub(_game, d)
   html += '<span class="scoreboard_team_name">'+d.place + '. ' + d.name+'</span>';
   html += '<span class="scoreboard_team_points">'+d.points+'<span class="scoreboard_team_fracs">.'+ d.time_bonus +'</span></span>';
 
+  if(this.socket && this.socket.url && this.socket.url.baseURI && this.socket.url.baseURI.includes("admin.html")) {
+    el.classed('scoreboard_team_online', d.online);
+  }
   el
     .classed('scoreboard_team', true)
     .classed('scoreboard_team_mine', isMe)
-    .classed('scoreboard_team_online', d.online)
+    // .classed('scoreboard_team_online', d.online)
     .classed('scoreboard_team_has_focus', d.visibility)
     .attr('id', 'scoreboard_team_'+d.login)
     .html(html);
