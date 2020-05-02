@@ -7,11 +7,7 @@ Game.prototype._postInit = function Game__postInit()
 
   // --- local events
 
-  var teamName = "";
-  teamName = $.cookie("game:user").login;
-  if(teamName) {
-    document.title = teamName + " : " + document.title;
-  }
+  displayTeamName();
 
   // window has focus event
   visibilityChange(function(hasFocus)
@@ -64,6 +60,9 @@ Game.prototype._postInit = function Game__postInit()
   // add extra events
   this.socket.on('data', function primus_onData(data)
   {
+
+    displayTeamName();
+
     // [game:auth]
     if (data['game:auth'])
     {
@@ -168,6 +167,9 @@ Game.prototype._handleError = function Game__handleError(error)
 
 Game.prototype._login = function Game__login(instance)
 {
+
+  displayTeamName();
+
   // if current instance is out of date
   // reset it
   if (instance && this.instance() != instance)
@@ -283,6 +285,17 @@ Game.prototype.updateTimer = function Game_updateTimer(timer)
   return this._team_commonUpdateTimer(timer);
 }
 
+
+function displayTeamName()
+{
+  var teamName = "";
+  if($ && $.cookie("game:user") && $.cookie("game:user").login) {
+    teamName = $.cookie("game:user").login;
+    if(teamName) {
+      document.title = teamName + " : Intellectual Casino";
+    }
+  }
+}
 
 // visibility change subroutine
 function visibilityChange(callback)
