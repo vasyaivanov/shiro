@@ -316,7 +316,8 @@
 {
   display: inline-block;
   width: auto;
-  height: auto;
+  height: 100%;
+  overflow-y: auto;
   vertical-align: middle;
 }
 
