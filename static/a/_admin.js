@@ -315,6 +315,7 @@ Game.prototype._postInit = function Game__postInit()
     title: 'add question',
     fields:
     [
+      {type: 'textarea', name: 'prequestion', title: 'prequestion'},
       {type: 'textarea', name: 'text', title: 'question'},
       {type: 'textarea', name: 'answer', title: 'answer'},
       {type: 'textarea', name: 'regex', title: 'regex'}
@@ -333,6 +334,7 @@ Game.prototype._postInit = function Game__postInit()
     fields:
     [
       {type: 'checkbox', name: 'played', title: 'been played'},
+      {type: 'textarea', name: 'prequestion', title: 'prequestion'},
       {type: 'textarea', name: 'text', title: 'question'},
       {type: 'textarea', name: 'answer', title: 'answer'},
       {type: 'textarea', name: 'regex', title: 'regex'}
@@ -479,7 +481,7 @@ Game.prototype._toggleAddTeamModal = function Game__toggleAddTeamModal(show)
     {
       if (action == 'submit')
       {
-        _game.socket.write({ 'admin:add_team': {name: data.name, password: data.password, regex: data.regex}, });
+        _game.socket.write({ 'admin:add_team': {name: data.name, password: data.password}, });
       }
     });
   }
@@ -577,7 +579,7 @@ Game.prototype._toggleAddQuestionModal = function Game__toggleAddQuestionModal(s
     {
       if (action == 'submit')
       {
-        _game.socket.write({ 'admin:add_question': {text: data.text, answer: data.answer, regex: data.regex} });
+        _game.socket.write({ 'admin:add_question': {prequestion: data.prequestion, text: data.text, answer: data.answer, regex: data.regex} });
       }
     });
   }

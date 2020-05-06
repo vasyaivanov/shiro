@@ -8,7 +8,9 @@ function Game(options)
   this.teamsList     = typeof options.teamsList == 'string' ? $(options.teamsList) : options.teamsList;
   this.timerPanel    = typeof options.timer == 'string' ? $(options.timer) : options.timer;
   this.questionPanel = typeof options.question == 'string' ? $(options.question) : options.question;
+  this.prequestionPanel = typeof options.prequestion == 'string' ? $(options.prequestion) : options.prequestion;
   this.questionText  = typeof options.questionText == 'string' ? $(options.questionText) : options.questionText;
+  this.prequestionText  = typeof options.prequestionText == 'string' ? $(options.prequestionText) : options.prequestionText;
   this.answerPanel   = typeof options.answer == 'string' ? $(options.answer) : options.answer;
   this.answerText    = typeof options.answerText == 'string' ? $(options.answerText) : options.answerText;
 
@@ -127,7 +129,7 @@ Game.prototype.init = function Game_init()
     // [game:current_question]
     if (data['game:current_question'])
     {
-      _game.currentQuestion(data['game:current_question'].index);
+      _game.currentQuestion(data['game:current_question'].index, data['game:current_question'].prequestion) ;
     }
 
     // [game:timer]
@@ -283,7 +285,7 @@ Game.prototype.setQuestions = function Game_setQuestions(questions)
   this._renderQuestions();
 }
 
-Game.prototype.currentQuestion = function Game_currentQuestion(index)
+Game.prototype.currentQuestion = function Game_currentQuestion(index, prequestion)
 {
   if (this.questionInPlay != index)
   {
@@ -298,6 +300,11 @@ Game.prototype.currentQuestion = function Game_currentQuestion(index)
     {
       $('#gameplay_question_'+this.questionInPlay).addClass('gameplay_question_playing');
     }
+  }
+
+  if(prequestion && (typeof this.prequestionText !== 'undefined')) {
+    this.prequestionText.html(prequestion);
+    this.prequestionPanel.show();
   }
 
   return this.questionInPlay;
@@ -343,12 +350,16 @@ Game.prototype.display = function Game_display(data)
   if (data && data['question'])
   {
     this.questionText.html(data['question'].text);
-    this.questionPanel.show();
+    this.questionPanel.show();    
+    this.prequestionPanel.hide();
+    this.prequestionText.html('');
   }
   else
   {
     this.questionPanel.hide();
-    this.questionText.html('');
+    this.questionText.html('');    
+    this.prequestionPanel.hide();
+    this.prequestionText.html('');
   }
 
   // answer

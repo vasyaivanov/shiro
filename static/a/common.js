@@ -12,6 +12,8 @@ $.domReady(function()
       , timer       : '.timer'
       , question    : '.question'
       , questionText: '.question_text'
+      , prequestion    : '.prequestion'
+      , prequestionText: '.prequestion_text'
       , answer      : '.answer'
       , answerText  : '.answer_text'
       })

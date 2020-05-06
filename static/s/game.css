@@ -283,7 +283,8 @@
 /* shared question & scoreboard panels */
 
 .scoreboard,
-.question
+.question,
+.prequestion
 {
   position: fixed;
   display: block;
@@ -300,7 +301,8 @@
   background-color: #ffffff;
 }
 .scoreboard:before,
-.question:before
+.question:before,
+.prequestion:before,
 {
   content: "";
   display: inline-block;
@@ -309,7 +311,8 @@
   vertical-align: middle;
 }
 .scoreboard_teams,
-.question_text
+.question_text,
+.prequestion_text
 {
   display: inline-block;
   width: auto;
@@ -319,7 +322,8 @@
 
 /* question panel */
 
-.question_text
+.question_text,
+.prequestion_text
 {
   font-size: 1.6em;
   color: #000000;
@@ -331,7 +335,8 @@
   user-select: none;
 }
 /* hide text */
-.question:after
+.question:after,
+.prequestion:after,
 {
   content: "";
   position: absolute;
@@ -343,7 +348,8 @@
   width: auto;
   height: auto;
 }
-.question_text::selection
+.question_text::selection,
+.prequestion_text::selection,
 {
   background-color: transparent;
 }
@@ -352,6 +358,7 @@
 
 /* label */
 .question_text:before,
+.prequestion_text:before,
 .answer_text:before
 {
   content: "question";
