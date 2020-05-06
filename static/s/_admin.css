@@ -246,6 +246,7 @@
   .scoreboard_team.scoreboard_team_online:before
   {
     background-color: #dd3333;
+    display:none;
   }
   .scoreboard_team.scoreboard_team_online.scoreboard_team_has_focus:before
   {
