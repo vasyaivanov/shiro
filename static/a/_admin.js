@@ -717,6 +717,7 @@ Game.prototype._drawTeamStub = function Game__drawTeamStub(_game, d)
   html += '<span class="scoreboard_team_name">'+d.place + '. ' + d.name+'</span>';
   html += '<span class="scoreboard_team_time_bonus">:'+bonus+'</span>';
   html += '<span class="scoreboard_team_points">'+d.points+'<span class="scoreboard_team_fracs">.'+ d.time_bonus +'</span></span>';
+  html += '<span class="scoreboard_team_dollars"> $' + d.dollars + '</span>'; 
   html += '<span class="scoreboard_team_controls"><span class="scoreboard_edit_team"></span><span class="scoreboard_delete_team"></span></span>';
 
   el

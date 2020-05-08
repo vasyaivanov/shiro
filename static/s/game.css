@@ -271,13 +271,19 @@
 {
   border-bottom: 1px solid #cccccc;
 }
-.scoreboard_team_fracs
+.scoreboard_team_fracs,
+.scoreboard_team_dollars
 {
   position: absolute;
   display: inline-block;
   margin-top: 2px;
   font-size: 14px;
   color: #999999;
+}
+
+.scoreboard_team_dollars
+{
+  margin-left: 5px;
 }
 
 /* shared question & scoreboard panels */
