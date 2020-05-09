@@ -111,3 +111,7 @@
     content: "Game window is in focus";
     color: #999999;
   }
+
+.scoreboard_team_mine {
+  opacity: 1;
+}
