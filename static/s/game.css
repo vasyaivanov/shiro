@@ -321,7 +321,7 @@
 .prequestion_text
 {
   display: inline-block;
-  width: auto;
+  width: 100%;
   height: 100%;
   overflow-y: auto;
   vertical-align: middle;

@@ -315,10 +315,10 @@ Game.prototype._postInit = function Game__postInit()
     title: 'add question',
     fields:
     [
-      {type: 'textarea', name: 'prequestion', title: 'prequestion'},
       {type: 'textarea', name: 'text', title: 'question'},
       {type: 'textarea', name: 'answer', title: 'answer'},
-      {type: 'textarea', name: 'regex', title: 'regex'}
+      {type: 'textarea', name: 'regex', title: 'regex'},
+      {type: 'textarea', name: 'prequestion', title: 'prequestion'}
     ],
     controls:
     [
