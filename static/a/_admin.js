@@ -117,6 +117,21 @@ Game.prototype._postInit = function Game__postInit()
     _game._toggleResetScoreboardModal(true);
   });
 
+    // resize answer pane
+  $('.resize_answer_pane').on('click', function(e)
+  {
+    e.stop();
+    var answer = $('.answer');
+    if(answer.hasClass('regularHeight'))
+    {
+      answer.removeClass('regularHeight');
+      answer.addClass('fullPageHeight');
+    } else {
+      answer.removeClass('fullPageHeight');
+      answer.addClass('regularHeight');
+    }
+  });
+
   // edit team action
   this.scoreboard.on('click', '.scoreboard_edit_team', function(e)
   {

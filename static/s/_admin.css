@@ -426,6 +426,27 @@
     pointer-events: none;
   }
 
+.resize_answer_pane
+{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  opacity: 0.5;
+  z-index: 2;
+}  
+.resize_answer_pane:before
+{
+  content: resize;
+}
+.fullPageHeight
+{
+  height: 80%;
+} 
+.regularHeight
+{
+  height: 20%;
+} 
+
 .answer_teams_team_correct
 {
   left: 5px;
