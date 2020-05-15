@@ -270,6 +270,7 @@
 .scoreboard_team_name
 {
   border-bottom: 1px solid #cccccc;
+  font-size: 0.9em;
 }
 .scoreboard_team_fracs,
 .scoreboard_team_dollars
@@ -277,7 +278,7 @@
   position: absolute;
   display: inline-block;
   margin-top: 2px;
-  font-size: 14px;
+  font-size: 0.9em;
   color: #999999;
 }
 
