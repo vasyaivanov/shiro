@@ -74,124 +74,132 @@ $.domReady(function()
 
   function renderTeams(teams, questions)
   {
-    // pre
-    boardPanel.css('min-width', (questions.length*60)+'px');
-    boardPanel.css('min-height', (teams.length*60)+'px');
-
-    var board
-      , team
-      , round
-      , minCellSize  = 26
-      , boardDim     = boardPanel.dim()
-      , cellWidth    = (100/questions.length)
-      , cellHeight   = (100/teams.length)
-      , shortSide    = Math.floor(Math.min(boardDim.width/questions.length, boardDim.height/teams.length))
-      , cubeSide     = Math.max(minCellSize, shortSide - (shortSide % 50) - 50) // min side - 20px
-      , cubeStep     = Math.max(1, Math.floor(cubeSide / 20))
-      , current      = {}
-      , pseudoStyles = []
-      , stylebox
-      ;
-
-    // check for custom styles
-    if (!stylebox)
+    var tableHTML = "";
+    for(teamIndex in teams) 
     {
-      stylebox = $('<style></style>').appendTo('head');
+      var team = teams[teamIndex];
+      tableHTML += "<tr>" + "<td>" + team.name  + "</td>" + "<td>" + team.points  + "</td>" +"</tr>"
+      console.log("JD: team="+teams[teamIndex].points);
     }
+    $('.board').append (tableHTML);
+    // // pre
+    // boardPanel.css('min-width', (questions.length*60)+'px');
+    // boardPanel.css('min-height', (teams.length*60)+'px');
 
-    teams.sort(sortTeams);
+    // var board
+    //   , team
+    //   , round
+    //   , minCellSize  = 26
+    //   , boardDim     = boardPanel.dim()
+    //   , cellWidth    = (100/questions.length)
+    //   , cellHeight   = (100/teams.length)
+    //   , shortSide    = Math.floor(Math.min(boardDim.width/questions.length, boardDim.height/teams.length))
+    //   , cubeSide     = Math.max(minCellSize, shortSide - (shortSide % 50) - 50) // min side - 20px
+    //   , cubeStep     = Math.max(1, Math.floor(cubeSide / 20))
+    //   , current      = {}
+    //   , pseudoStyles = []
+    //   , stylebox
+    //   ;
 
-    board = d3.select(boardPanel[0]);
+    // // check for custom styles
+    // if (!stylebox)
+    // {
+    //   stylebox = $('<style></style>').appendTo('head');
+    // }
 
-    // add content dependent styles
-    pseudoStyles.push('.team:before, .team:after { line-height: '+Math.max(minCellSize, Math.floor(boardDim.height/100*cellHeight)-20)+'px; }');
+    // teams.sort(sortTeams);
 
-    // team
-    team = board.selectAll('.team')
-      .data(teams, function(d){ return d.login; })
-      .order()
-      .attr('class', function(d){ return 'team_'+d.login; })
-      .classed('team', true)
-      .style('height', cellHeight+'%')
-      .attr('data-name', function(d){ return d.name; })
-      .attr('data-points', function(d)
-      {
-        return d.points + '.' + time_bonus
-      })
-      ;
+    // board = d3.select(boardPanel[0]);
 
-    team.enter().append('div')
-      .order()
-      .style('height', cellHeight+'%')
-      .attr('class', function(d){ return 'team_'+d.login; })
-      .classed('team', true)
-      .attr('data-name', function(d){ return d.name; })
-      .attr('data-points', function(d)
-      {
-        return d.points + '.' + d.time_bonus
-      })
-      ;
+    // // add content dependent styles
+    // pseudoStyles.push('.team:before, .team:after { line-height: '+Math.max(minCellSize, Math.floor(boardDim.height/100*cellHeight)-20)+'px; }');
 
-    team.exit()
-      .remove()
-      ;
+    // // team
+    // team = board.selectAll('.team')
+    //   .data(teams, function(d){ return d.login; })
+    //   .order()
+    //   .attr('class', function(d){ return 'team_'+d.login; })
+    //   .classed('team', true)
+    //   .style('height', cellHeight+'%')
+    //   .attr('data-name', function(d){ return d.name; })
+    //   .attr('data-points', function(d)
+    //   {
+    //     return d.points + '.' + time_bonus
+    //   })
+    //   ;
 
-    // round
-    round = team.selectAll('.round')
-      .data(function(d){ return $.values($.map(questions, function(q){ return d.answers[q.index] ? $.merge(d.answers[q.index], {id: q.index, played: q.played, team: d.login}) : {id: q.index, played: false, team: d.login}; })); })
-      .order()
-      .style('width', cellWidth+'%')
-      .attr('class', function(d){ return 'round_'+d.id; })
-      .classed('round', true)
-      .classed('played', function(d){ return !!d.played; })
-      .attr('data-round', function(d){ return d.id; })
-      ;
+    // team.enter().append('div')
+    //   .order()
+    //   .style('height', cellHeight+'%')
+    //   .attr('class', function(d){ return 'team_'+d.login; })
+    //   .classed('team', true)
+    //   .attr('data-name', function(d){ return d.name; })
+    //   .attr('data-points', function(d)
+    //   {
+    //     return d.points + '.' + d.time_bonus
+    //   })
+    //   ;
 
-    round.enter().append('div')
-      .order()
-      .style('width', cellWidth+'%')
-      .attr('class', function(d){ return 'round_'+d.id; })
-      .classed('round', true)
-      .classed('played', function(d){ return !!d.played; })
-      .attr('data-round', function(d){ return d.id; })
-      .html(function(d)
-      {
-        var tall      = d.time ? cubeStep*(d.time[0]) : 0
-          , outStyles = []
-          , inStyles  = []
-          ;
+    // team.exit()
+    //   .remove()
+    //   ;
 
-        outStyles.push('width: '+cubeSide+'px');
-        outStyles.push('height: '+cubeSide+'px');
-        outStyles.push('margin: -'+Math.floor(cubeSide/2)+'px 0px 0px -'+Math.floor(cubeSide/2)+'px');
-        outStyles.push('background-color: '+(d.correct === null ? 'rgba(221, 221, 221, 0.5)' : (d.correct ? 'rgba(51, 221, 51, 0.5)' : 'rgba(221, 51, 51, 0.5)')));
-        outStyles.push('outline: 1px solid '+(d.correct === null ? '#cccccc' : (d.correct ? 'rgba(51, 221, 51, 0.9)' : 'rgba(221, 51, 51, 0.6)')));
+    // // round
+    // round = team.selectAll('.round')
+    //   .data(function(d){ return $.values($.map(questions, function(q){ return d.answers[q.index] ? $.merge(d.answers[q.index], {id: q.index, played: q.played, team: d.login}) : {id: q.index, played: false, team: d.login}; })); })
+    //   .order()
+    //   .style('width', cellWidth+'%')
+    //   .attr('class', function(d){ return 'round_'+d.id; })
+    //   .classed('round', true)
+    //   .classed('played', function(d){ return !!d.played; })
+    //   .attr('data-round', function(d){ return d.id; })
+    //   ;
 
-        inStyles.push('line-height: '+cubeSide+'px');
-        inStyles.push('font-size: '+Math.floor(cubeSide/2)+'px');
-        // inStyles.push('color: '+(d.correct === null ? '#999999' : '#ffffff'));
-        // inStyles.push('-webkit-transform: rotateZ(90deg) translateZ('+tall+'px)');
-        // inStyles.push('transform: rotateZ(90deg) translateZ('+tall+'px)');
+    // round.enter().append('div')
+    //   .order()
+    //   .style('width', cellWidth+'%')
+    //   .attr('class', function(d){ return 'round_'+d.id; })
+    //   .classed('round', true)
+    //   .classed('played', function(d){ return !!d.played; })
+    //   .attr('data-round', function(d){ return d.id; })
+    //   .html(function(d)
+    //   {
+    //     var tall      = d.time ? cubeStep*(d.time[0]) : 0
+    //       , outStyles = []
+    //       , inStyles  = []
+    //       ;
 
-        pseudoStyles.push('.team_'+d.team+' .round_'+d.id+' .cube:before { left: -'+Math.ceil(tall/2)+'px; width: '+tall+'px; } ');
-        pseudoStyles.push('.team_'+d.team+' .round_'+d.id+' .cube:after { right: -'+Math.ceil(tall/2)+'px; width: '+tall+'px; } ');
+    //     outStyles.push('width: '+cubeSide+'px');
+    //     outStyles.push('height: '+cubeSide+'px');
+    //     outStyles.push('margin: -'+Math.floor(cubeSide/2)+'px 0px 0px -'+Math.floor(cubeSide/2)+'px');
+    //     outStyles.push('background-color: '+(d.correct === null ? 'rgba(221, 221, 221, 0.5)' : (d.correct ? 'rgba(51, 221, 51, 0.5)' : 'rgba(221, 51, 51, 0.5)')));
+    //     outStyles.push('outline: 1px solid '+(d.correct === null ? '#cccccc' : (d.correct ? 'rgba(51, 221, 51, 0.9)' : 'rgba(221, 51, 51, 0.6)')));
 
-        pseudoStyles.push('.team_'+d.team+' .round_'+d.id+' .cube>i:before { left: -'+Math.ceil(tall/2)+'px; width: '+tall+'px; } ');
-        pseudoStyles.push('.team_'+d.team+' .round_'+d.id+' .cube>i:after { right: -'+Math.ceil(tall/2)+'px; width: '+tall+'px; } ');
+    //     inStyles.push('line-height: '+cubeSide+'px');
+    //     inStyles.push('font-size: '+Math.floor(cubeSide/2)+'px');
+    //     // inStyles.push('color: '+(d.correct === null ? '#999999' : '#ffffff'));
+    //     // inStyles.push('-webkit-transform: rotateZ(90deg) translateZ('+tall+'px)');
+    //     // inStyles.push('transform: rotateZ(90deg) translateZ('+tall+'px)');
 
-        return d.time ? '<span style="'+outStyles.join('; ')+';" class="cube"><i style="'+inStyles.join('; ')+';">:'+formatSeconds(d.time[0])+'</i></span>' : '';
-      })
-      ;
+    //     pseudoStyles.push('.team_'+d.team+' .round_'+d.id+' .cube:before { left: -'+Math.ceil(tall/2)+'px; width: '+tall+'px; } ');
+    //     pseudoStyles.push('.team_'+d.team+' .round_'+d.id+' .cube:after { right: -'+Math.ceil(tall/2)+'px; width: '+tall+'px; } ');
 
-    round.exit()
-      .remove()
-      ;
+    //     pseudoStyles.push('.team_'+d.team+' .round_'+d.id+' .cube>i:before { left: -'+Math.ceil(tall/2)+'px; width: '+tall+'px; } ');
+    //     pseudoStyles.push('.team_'+d.team+' .round_'+d.id+' .cube>i:after { right: -'+Math.ceil(tall/2)+'px; width: '+tall+'px; } ');
 
-    // add styles for pseudo elements
-    stylebox.html(pseudoStyles.join('\n'));
+    //     return d.time ? '<span style="'+outStyles.join('; ')+';" class="cube"><i style="'+inStyles.join('; ')+';">:'+formatSeconds(d.time[0])+'</i></span>' : '';
+    //   })
+    //   ;
 
-    // done
-    boardPanel.removeClass('loading');
+    // round.exit()
+    //   .remove()
+    //   ;
+
+    // // add styles for pseudo elements
+    // stylebox.html(pseudoStyles.join('\n'));
+
+    // // done
+    // boardPanel.removeClass('loading');
   }
 
   function sortTeams(a, b)
