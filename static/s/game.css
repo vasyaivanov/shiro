@@ -18,10 +18,10 @@
   content: "© Evgeni DjWizard Duhovny & Alex Indigo";
   position: absolute;
   display: block;
-  top: -5px;
+  top: -8px;
   right: 10px;
   font-family: "Ubuntu", sans-serif;
-  font-size: 16px;
+  font-size: 12px;
   color: #cccccc;
   opacity: 0.6;
 }
