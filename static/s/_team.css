@@ -65,9 +65,9 @@
   color: #555555;
   border-color: #999999;
   position: absolute;
-  left: 5px;
-  bottom: 17px;
-  padding: 3px;
+  left: 0px;
+  bottom: 0px;
+  padding: 0px;
 }
 .logout_button:hover
 {
@@ -115,3 +115,17 @@
 .scoreboard_team_mine {
   opacity: 1;
 }
+
+.answer_form_messagebox_enter {
+  position: absolute;
+  left: 0px;
+}
+.answer_form_label_for_enter {
+  position: absolute;
+  left: 27px;
+  opacity: 0.3;
+  bottom: 7px;
+}
+
+
+

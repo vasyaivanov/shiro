@@ -32,8 +32,7 @@ Game.prototype._postInit = function Game__postInit()
     e.stop();
   });
 
-  // submit answer button
-  $('.answer_form_messagebox_send').on('click', function(e)
+  Game.prototype._submitAnswer = function Game__submitAnswer(e)
   {
     var answer = $('.answer_form_messagebox')[0].value;
 
@@ -54,6 +53,21 @@ Game.prototype._postInit = function Game__postInit()
           _game.socket.write({ 'team:answer': {text: answer} });
         }
       });
+    }
+
+  }
+
+  // submit answer button
+  $('.answer_form_messagebox_send').on('click', function(e)
+  {
+    _game._submitAnswer(e);
+  });
+    // submit answer on Enter inside answer field
+  $('.answer_form_messagebox').on('keypress', function(e)
+  {
+    var isSubmitOnEnter = document.getElementById('submitOnEnter').checked;
+    if(isSubmitOnEnter && (e.originalEvent.keyCode === 32 || e.originalEvent.keyCode === 13)) {
+      _game._submitAnswer(e);
     }
   });
 
