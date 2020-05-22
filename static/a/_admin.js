@@ -837,6 +837,7 @@ Game.prototype._sortTeamAnswerStub = function Game__sortTeamAnswerStub(_game, a,
     , evaluatedA = typeof answerA.correct == 'boolean'
     , evaluatedB = typeof answerB.correct == 'boolean'
     , evaluated  = 0
+    , returnValue = 0
     ;
 
   if (evaluatedA && !evaluatedB)
@@ -847,8 +848,14 @@ Game.prototype._sortTeamAnswerStub = function Game__sortTeamAnswerStub(_game, a,
   {
     evaluated = -1;
   }
-
-  return evaluated ? evaluated : (answerB.bonus - answerA.bonus);
+  if(!evaluated)
+  {
+    returnValue = (a.name > b.name) ? 1 : -1;
+  } else {
+    returnValue = evaluated;
+  }
+  return returnValue;
+  // return evaluated ? evaluated : (answerB.bonus - answerA.bonus);
 }
 
 Game.prototype._drawTeamAnswerStub = function Game__drawTeamAnswerStub(_game, d)
