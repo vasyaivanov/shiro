@@ -38,9 +38,12 @@ Game.prototype._postInit = function Game__postInit()
 
     e.stop();
 
+    var vabankValue = document.getElementById('vabank').checked;
+    document.getElementById('vabank').checked = false;
+
     if (answer && answer.length > 0)
     {
-      _game.socket.write({ 'team:answer': {text: answer} });
+      _game.socket.write({ 'team:answer': {text: answer, vabank: vabankValue} });
     }
     else
     {
