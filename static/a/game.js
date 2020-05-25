@@ -13,6 +13,8 @@ function Game(options)
   this.prequestionText  = typeof options.prequestionText == 'string' ? $(options.prequestionText) : options.prequestionText;
   this.answerPanel   = typeof options.answer == 'string' ? $(options.answer) : options.answer;
   this.answerText    = typeof options.answerText == 'string' ? $(options.answerText) : options.answerText;
+  this.vabank   = typeof options.vabank == 'string' ? $(options.vabank) : options.vabank;
+  this.vabankLabel    = typeof options.vabankLabel == 'string' ? $(options.vabankLabel) : options.vabankLabel;
 
   // game play type
   this.type   = options.type || 'game';
@@ -307,6 +309,11 @@ Game.prototype.currentQuestion = function Game_currentQuestion(index, prequestio
     this.prequestionPanel.show();
   }
 
+  // if(this.vabank && this.questions[this.questionInPlay] && this.questions[this.questionInPlay].vabank) {
+  //   this.vabank.show();
+  //   this.vabankPanel.show();
+  // }
+
   return this.questionInPlay;
 }
 
@@ -360,6 +367,15 @@ Game.prototype.display = function Game_display(data)
     this.questionText.html('');    
     this.prequestionPanel.hide();
     this.prequestionText.html('');
+  }
+
+  //vabank
+  if(this.vabank && data && data.question && data.question.vabank) {
+    this.vabank.show();
+    this.vabankLabel.show();
+  } else {
+    this.vabank.hide();
+    this.vabankLabel.hide();    
   }
 
   // answer

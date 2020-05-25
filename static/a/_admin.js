@@ -333,7 +333,8 @@ Game.prototype._postInit = function Game__postInit()
       {type: 'textarea', name: 'text', title: 'question'},
       {type: 'textarea', name: 'answer', title: 'answer'},
       {type: 'textarea', name: 'regex', title: 'regex'},
-      {type: 'textarea', name: 'prequestion', title: 'prequestion'}
+      {type: 'textarea', name: 'prequestion', title: 'prequestion'},
+      {type: 'checkbox', name: 'vabank', title: 'vabank'}
     ],
     controls:
     [
@@ -349,10 +350,11 @@ Game.prototype._postInit = function Game__postInit()
     fields:
     [
       {type: 'checkbox', name: 'played', title: 'been played'},
-      {type: 'textarea', name: 'prequestion', title: 'prequestion'},
       {type: 'textarea', name: 'text', title: 'question'},
       {type: 'textarea', name: 'answer', title: 'answer'},
-      {type: 'textarea', name: 'regex', title: 'regex'}
+      {type: 'textarea', name: 'regex', title: 'regex'},
+      {type: 'textarea', name: 'prequestion', title: 'prequestion'},
+      {type: 'checkbox', name: 'vabank', title: 'vabank'}
     ],
     controls:
     [
@@ -594,7 +596,7 @@ Game.prototype._toggleAddQuestionModal = function Game__toggleAddQuestionModal(s
     {
       if (action == 'submit')
       {
-        _game.socket.write({ 'admin:add_question': {prequestion: data.prequestion, text: data.text, answer: data.answer, regex: data.regex} });
+        _game.socket.write({ 'admin:add_question': {vabank: data.vabank, prequestion: data.prequestion, text: data.text, answer: data.answer, regex: data.regex} });
       }
     });
   }
