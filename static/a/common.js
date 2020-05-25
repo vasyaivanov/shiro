@@ -18,6 +18,7 @@ $.domReady(function()
       , answerText  : '.answer_text'
       , vabank      : '.answer_form_messagebox_vabank'
       , vabankLabel : '.answer_form_label_for_vabank'
+      , vabankIcon  : '.vabankIcon'
       })
     ;
 

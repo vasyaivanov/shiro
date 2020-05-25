@@ -15,6 +15,7 @@ function Game(options)
   this.answerText    = typeof options.answerText == 'string' ? $(options.answerText) : options.answerText;
   this.vabank   = typeof options.vabank == 'string' ? $(options.vabank) : options.vabank;
   this.vabankLabel    = typeof options.vabankLabel == 'string' ? $(options.vabankLabel) : options.vabankLabel;
+  this.vabankIcon    = typeof options.vabankIcon == 'string' ? $(options.vabankIcon) : options.vabankIcon;
 
   // game play type
   this.type   = options.type || 'game';
@@ -309,10 +310,11 @@ Game.prototype.currentQuestion = function Game_currentQuestion(index, prequestio
     this.prequestionPanel.show();
   }
 
-  // if(this.vabank && this.questions[this.questionInPlay] && this.questions[this.questionInPlay].vabank) {
-  //   this.vabank.show();
-  //   this.vabankPanel.show();
-  // }
+  if(this.vabankIcon &&  this.questionInPlay >0 && this.questions[this.questionInPlay-1] && this.questions[this.questionInPlay-1].vabank) {
+    this.vabankIcon.show();
+  }else {
+    this.vabankIcon.hide();
+  }
 
   return this.questionInPlay;
 }

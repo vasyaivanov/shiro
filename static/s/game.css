@@ -555,3 +555,9 @@
   /*background-color: #dd3333;*/
   background-color: #939393;
 }
+
+.vabankIcon
+{
+  position: absolute;
+  top: 10px;
+}
