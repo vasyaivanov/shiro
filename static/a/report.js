@@ -79,7 +79,7 @@ $.domReady(function()
     var tableHTML = "";
     var numberOfQuestions = questions.length;
 
-    var headRow = "<tr><th></th><th>Name</th><th>Score</th>";
+    var headRow = "<tr><th>Place</th><th>Name</th><th>Score</th>";
     for(let i=0; i < numberOfQuestions; i++) {
       var questionNumber = i+1;
       headRow += ("<th>" + questionNumber + "</th>");
