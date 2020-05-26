@@ -74,36 +74,39 @@ $.domReady(function()
 
   function renderTeams(teams, questions)
   {
+    teams.sort(sortTeams);
+
     var tableHTML = "";
     var numberOfQuestions = questions.length;
 
-    var headRow = "<tr><th>Name</th><th>Score</th>";
+    var headRow = "<tr><th></th><th>Name</th><th>Score</th>";
     for(let i=0; i < numberOfQuestions; i++) {
       var questionNumber = i+1;
       headRow += ("<th>" + questionNumber + "</th>");
     }
     headRow +="</tr>";
     tableHTML += headRow;
-
-    for(teamIndex in teams) 
+    var teamPlace = 0;
+    for(var teamIndex in teams) 
     {
+      teamPlace++;
       var team = teams[teamIndex];
       var row = "<tr>";
+      row += "<td><b>"+teamPlace+"</b></td>";
       row += "<td><b>" + team.name  + "</b></td>" + "<td><b>" + team.points  + "</b></td>";
       var answers = team.answers;
       for(let i=0; i< numberOfQuestions; i++) {
-        var questionCell = "<td>";
+        var questionCell = "";
         // team gave answer
         if(answers[i]) {
           if(answers[i].correct) {
-            questionCell += "1";
+            questionCell += "<td class='correct_answer'>1</td>";
           } else {
-            questionCell += "0";
+            questionCell += "<td class='incorrect_answer'>0</td>";
           }
         } else {
-          questionCell += "-";
+          questionCell += "<td>-</td>";
         }
-        questionCell += "</td>";
         row += questionCell;
       }
       row+="</tr>";
