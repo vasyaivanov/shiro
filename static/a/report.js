@@ -75,10 +75,39 @@ $.domReady(function()
   function renderTeams(teams, questions)
   {
     var tableHTML = "";
+    var numberOfQuestions = questions.length;
+
+    var headRow = "<tr><th>Name</th><th>Score</th>";
+    for(let i=0; i < numberOfQuestions; i++) {
+      var questionNumber = i+1;
+      headRow += ("<th>" + questionNumber + "</th>");
+    }
+    headRow +="</tr>";
+    tableHTML += headRow;
+
     for(teamIndex in teams) 
     {
       var team = teams[teamIndex];
-      tableHTML += "<tr>" + "<td>" + team.name  + "</td>" + "<td>" + team.points  + "</td>" +"</tr>"
+      var row = "<tr>";
+      row += "<td><b>" + team.name  + "</b></td>" + "<td><b>" + team.points  + "</b></td>";
+      var answers = team.answers;
+      for(let i=0; i< numberOfQuestions; i++) {
+        var questionCell = "<td>";
+        // team gave answer
+        if(answers[i]) {
+          if(answers[i].correct) {
+            questionCell += "1";
+          } else {
+            questionCell += "0";
+          }
+        } else {
+          questionCell += "-";
+        }
+        questionCell += "</td>";
+        row += questionCell;
+      }
+      row+="</tr>";
+      tableHTML += row;
       console.log("JD: team="+teams[teamIndex].points);
     }
     $('.board').append (tableHTML);
