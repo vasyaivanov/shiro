@@ -95,7 +95,7 @@ $.domReady(function()
       row += "<td><b>"+teamPlace+"</b></td>";
       row += "<td><b>" + team.name  + "</b></td>" + "<td><b>" + team.points  + "</b></td>";
       var answers = team.answers;
-      for(let i=0; i< numberOfQuestions; i++) {
+      for(let i=1; i<= numberOfQuestions; i++) {
         var questionCell = "";
         // team gave answer
         if(answers[i]) {
