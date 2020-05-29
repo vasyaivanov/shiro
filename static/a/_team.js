@@ -74,6 +74,16 @@ Game.prototype._postInit = function Game__postInit()
     }
   });
 
+  // send to admin that Vabank was clicked
+  $('.answer_form_messagebox_vabank').on('click', function(e)
+  {
+    var isVabankChecked = document.getElementById('vabank').checked;
+    if(_game && _game.user() && _game.user().login) {
+      _game.socket.write({ 'team:vabank': {team: _game.user().login, vabank: isVabankChecked}});
+    }
+  });
+
+
   // add extra events
   this.socket.on('data', function primus_onData(data)
   {

@@ -312,8 +312,12 @@ Game.prototype.currentQuestion = function Game_currentQuestion(index, prequestio
 
   if(this.vabankIcon &&  this.questionInPlay >0 && this.questions[this.questionInPlay-1] && this.questions[this.questionInPlay-1].vabank) {
     this.vabankIcon.show();
+    this.vabank.show();
+    this.vabankLabel.show();
   }else {
-    this.vabankIcon.hide();
+    this.vabankIcon.hide();    
+    this.vabank.hide();
+    this.vabankLabel.hide();
   }
 
   return this.questionInPlay;

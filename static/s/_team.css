@@ -134,12 +134,14 @@
 .answer_form_messagebox_vabank {
   position: absolute;
   left: 120px;
+  bottom: 20%;
+  z-index: 1;
 }
 .answer_form_label_for_vabank {
   position: absolute;
   left: 147px;
-  opacity: 0.3;
-  bottom: 7px;
+  bottom: 20%;
+  z-index: 1;
   font-size: 12px;
 }
 
