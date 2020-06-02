@@ -28,6 +28,7 @@ th {
 
 td {
   padding: 1px 15px 1px;
+  white-space: nowrap;
 }
 
 .board
@@ -275,4 +276,10 @@ td {
 
 .incorrect_answer {
   color: red;
+}
+.report_points {
+  opacity:0.95;
+}
+.report_city {
+  font-size: 0.8em;;
 }

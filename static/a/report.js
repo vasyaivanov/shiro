@@ -79,7 +79,7 @@ $.domReady(function()
     var tableHTML = "";
     var numberOfQuestions = questions.length;
 
-    var headRow = "<tr><th>Place</th><th>Name</th><th>Score</th>";
+    var headRow = "<tr><th>Place</th><th>Name</th><th>City</th><th>Points</th><th>Bonus</th><th>Dollars</th>";
     for(let i=0; i < numberOfQuestions; i++) {
       var questionNumber = i+1;
       headRow += ("<th>" + questionNumber + "</th>");
@@ -93,7 +93,9 @@ $.domReady(function()
       var team = teams[teamIndex];
       var row = "<tr>";
       row += "<td><b>"+teamPlace+"</b></td>";
-      row += "<td><b>" + team.name  + "</b></td>" + "<td><b>" + team.points  + "</b></td>";
+      var teamCity = team.city ? team.city : "";
+      row += "<td><b>" + team.name  + "</b></td>" + "<td class='report_city'>" + teamCity  + "</td>";
+      row += "<td class='report_points'><b>" + team.points  + "</b></td>" + "<td>" + team.time_bonus  + "</td>" + "<td>$" + team.dollars  + "</td>";
       var answers = team.answers;
       for(let i=1; i<= numberOfQuestions; i++) {
         var questionCell = "";
