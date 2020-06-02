@@ -69,7 +69,7 @@ Game.prototype._postInit = function Game__postInit()
   $('.answer_form_messagebox').on('keypress', function(e)
   {
     var isSubmitOnEnter = document.getElementById('submitOnEnter').checked;
-    if(isSubmitOnEnter && (e.originalEvent.keyCode === 32 || e.originalEvent.keyCode === 13)) {
+    if(isSubmitOnEnter && (e.originalEvent.keyCode === 13)) {
       _game._submitAnswer(e);
     }
   });
