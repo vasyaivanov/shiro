@@ -284,6 +284,7 @@ Game.prototype._postInit = function Game__postInit()
     fields:
     [
       {type: 'text', name: 'name', title: 'team'},
+      {type: 'text', name: 'city', title: 'city'},
       {type: 'text', name: 'password', title: 'password'}
     ],
     controls:
@@ -300,6 +301,7 @@ Game.prototype._postInit = function Game__postInit()
     fields:
     [
       {name: 'login', title: 'login', readonly: true},
+      {name: 'city', title: 'city'},
       {name: 'name', title: 'team'},
       {name: 'password', title: 'password'},
       {name: 'points', title: 'points'},
@@ -498,7 +500,7 @@ Game.prototype._toggleAddTeamModal = function Game__toggleAddTeamModal(show)
     {
       if (action == 'submit')
       {
-        _game.socket.write({ 'admin:add_team': {name: data.name, password: data.password}, });
+        _game.socket.write({ 'admin:add_team': {name: data.name, city: data.city, password: data.password}, });
       }
     });
   }
@@ -732,6 +734,9 @@ Game.prototype._drawTeamStub = function Game__drawTeamStub(_game, d)
   bonus = bonus < 10 ? '0'+bonus : ''+bonus;
 
   html += '<span class="scoreboard_team_name">'+d.place + '. ' + d.name+'</span>';
+  if(d.city){
+    html += '<span class="scoreboard_team_city">('+d.city+')</span>';
+  }
   html += '<span class="scoreboard_team_time_bonus">:'+bonus+'</span>';
   html += '<span class="scoreboard_team_points">'+d.points+'<span class="scoreboard_team_fracs">.'+ d.time_bonus +'</span></span>';
   html += '<span class="scoreboard_team_dollars"> $' + d.dollars + '</span>'; 

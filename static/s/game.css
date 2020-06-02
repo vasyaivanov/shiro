@@ -260,7 +260,8 @@
   }
 
 .scoreboard_team_name,
-.scoreboard_team_points
+.scoreboard_team_points,
+.scoreboard_team_city
 {
   display: block;
   min-width: 90px;
@@ -271,6 +272,10 @@
 {
   border-bottom: 1px solid #cccccc;
   font-size: 0.9em;
+}
+.scoreboard_team_city
+{
+  font-size:0.7em;
 }
 .scoreboard_team_fracs,
 .scoreboard_team_dollars
