@@ -212,6 +212,31 @@ Game.prototype._postInit = function Game__postInit()
     _game._toggleDeleteQuestionModal(true, question);
   });
 
+  // show to admin only answers for the question
+    this.gameplay.on('click', '.gameplay_admin_answers', function(e)
+  {
+    var el       = $(this)
+      , question = el.parents('.gameplay_question').attr('id').replace(/^gameplay_question_/, '')
+      , show     = true
+      ;
+
+    if (!question) return;
+
+    e.stop();
+
+    // check if reverse action is needed
+    if (_game.answerText.css('display') != 'none')
+    {
+      show = false;
+    }
+
+    // set questionInAdmin so admin can look at question different from the current question
+    _game.questionInAdmin = question;
+    _game._displayTeamsAnswers();
+    
+
+  });
+
   // show answer action
   this.gameplay.on('click', '.gameplay_show_answer', function(e)
   {
@@ -405,6 +430,7 @@ Game.prototype.pickQuestion = function Game_pickQuestion(index)
   {
     this.socket.write({ 'admin:set_question': {index: 0} });
   }
+  this.questionInAdmin = index;
 }
 
 Game.prototype.showAnswer = function Game_showAnswer(index, show)
@@ -419,10 +445,10 @@ Game.prototype.showAnswer = function Game_showAnswer(index, show)
 
 Game.prototype.evalAnswer = function Game_evalAnswer(team, status)
 {
-  var question;
+  var question = (this.questionInAdmin) ? this.questionInAdmin : this.questionInPlay;
 
   // no current question, team or status, bye bye
-  if (!team || !status || !(question = this.questionInPlay)) return;
+  if (!team || !status ) return;
 
   this.socket.write({ 'admin:eval_answer': {question: question, team: team, status: status} });
 }
@@ -432,6 +458,7 @@ Game.prototype._displayTeamsAnswers = function Game__displayTeamsAnswers(show)
 {
   var _game = this
     , teams
+    , question = (_game.questionInAdmin) ? _game.questionInAdmin : _game.questionInPlay
     ;
 
   if (arguments.length < 1)
@@ -440,12 +467,13 @@ Game.prototype._displayTeamsAnswers = function Game__displayTeamsAnswers(show)
   }
 
   // sanity check
-  if (!show || !this.questionInPlay)
+  if ((!show || !this.questionInPlay) && !_game.questionInAdmin)
   {
     this.teamsAnswersPanel.hide();
 
     $('.answer_teams_stats').removeAttr('data-teams');
     $('.answer_teams_stats').removeAttr('data-answers');
+    $('.answer_teams_stats').removeAttr('data-question');
     $('.answer_teams_stats').removeAttr('data-evaluated');
 
     return;
@@ -456,7 +484,7 @@ Game.prototype._displayTeamsAnswers = function Game__displayTeamsAnswers(show)
   }
 
   // get only ones answered
-  teams = $.filter(this.teams, function(t){ return t.answers && t.answers[_game.questionInPlay]; });
+  teams = $.filter(this.teams, function(t){ return t.answers && t.answers[question]; });
   this._renderTeamsAnswers(teams);
 }
 
@@ -759,7 +787,7 @@ Game.prototype._drawQuestionStub = function Game__drawQuestionStub(_game, d)
     , html = d.index;
     ;
 
-  html += '<span class="gameplay_question_controls"><span class="gameplay_edit_question"></span><span class="gameplay_delete_question"></span><span class="gameplay_show_answer"></span></span>';
+  html += '<span class="gameplay_question_controls"><span class="gameplay_edit_question"></span><span class="gameplay_delete_question"></span><span class="gameplay_admin_answers"></span><span class="gameplay_show_answer"></span></span>';
 
   el
     .classed('gameplay_question', true)
@@ -815,6 +843,7 @@ Game.prototype._renderTeamsAnswers = function Game__renderTeamsAnswers(teams)
   // TODO: Make it sanely
   $('.answer_teams_stats').attr('data-teams', this.teams.length);
   $('.answer_teams_stats').attr('data-answers', '0');
+  $('.answer_teams_stats').attr('data-question', '0');
   $('.answer_teams_stats').attr('data-evaluated', '0');
 
   // cleanup
@@ -839,8 +868,9 @@ Game.prototype._renderTeamsAnswers = function Game__renderTeamsAnswers(teams)
 
 Game.prototype._sortTeamAnswerStub = function Game__sortTeamAnswerStub(_game, a, b)
 {
-  var answerA = a.answers[_game.questionInPlay]
-    , answerB = b.answers[_game.questionInPlay]
+  var question = (_game.questionInAdmin) ? _game.questionInAdmin : _game.questionInPlay
+    , answerA = a.answers[question]
+    , answerB = b.answers[question]
     , evaluatedA = typeof answerA.correct == 'boolean'
     , evaluatedB = typeof answerB.correct == 'boolean'
     , evaluated  = 0
@@ -869,7 +899,8 @@ Game.prototype._drawTeamAnswerStub = function Game__drawTeamAnswerStub(_game, d)
 {
   // this here is a DOM element
   var el     = _game.d3.select(this)
-    , answer = d.answers[_game.questionInPlay]
+    , question = question = (_game.questionInAdmin) ? _game.questionInAdmin : _game.questionInPlay
+    , answer = d.answers[question]
     , seconds = answer.time[0] < 10 ? '0'+answer.time[0] : answer.time[0]
     , permile = Math.floor(answer.time[1]/1e6)
     , html   = ''
@@ -878,6 +909,7 @@ Game.prototype._drawTeamAnswerStub = function Game__drawTeamAnswerStub(_game, d)
 
   // update stats
   statsPanel.attr('data-answers', +(statsPanel.attr('data-answers') || 0) + 1);
+  statsPanel.attr('data-question', question);
   statsPanel.attr('data-evaluated', +(statsPanel.attr('data-evaluated') || 0) + (typeof answer.correct == 'boolean' ? 1 : 0));
 
   // add zeros to the end

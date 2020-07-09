@@ -57,6 +57,7 @@ function Game(options)
   this.questions = [];
 
   this.questionInPlay = 0;
+  this.questionInAdmin = 0;
 
   // init
   this.init();
