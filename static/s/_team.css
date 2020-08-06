@@ -136,6 +136,7 @@
   left: 120px;
   bottom: 20%;
   z-index: 1;
+  display: none;
 }
 .answer_form_label_for_vabank {
   position: absolute;
