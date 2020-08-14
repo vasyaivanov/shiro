@@ -15,6 +15,14 @@ cd node_modules/shiro
 node server.js --port=1337 --admin=secretpassword [--socket=socket.io|engine.io]
 ```
 
+
+## Play
+```
+Game host at: <url>:1337/admin.html
+Team's captain giving answers at: <url>:1337/captain.html
+Spectators at: <url>:1337
+
+
 ## TODO (Coming)
 - More docs
 - iPhone/iPad interfaces
