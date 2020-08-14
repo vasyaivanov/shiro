@@ -16,6 +16,7 @@ function Game(options)
   this.vabank   = typeof options.vabank == 'string' ? $(options.vabank) : options.vabank;
   this.vabankLabel    = typeof options.vabankLabel == 'string' ? $(options.vabankLabel) : options.vabankLabel;
   this.vabankIcon    = typeof options.vabankIcon == 'string' ? $(options.vabankIcon) : options.vabankIcon;
+  this.answers = [];
 
   // game play type
   this.type   = options.type || 'game';

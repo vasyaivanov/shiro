@@ -34,9 +34,21 @@ Game.prototype._postInit = function Game__postInit()
 
   Game.prototype._submitAnswer = function Game__submitAnswer(e)
   {
-    var answer = $('.answer_form_messagebox')[0].value;
+    if(e){
+      e.stop();
+    }
 
-    e.stop();
+    var answer = $('.answer_form_messagebox')[0].value;
+    
+    if(_game.answers) {
+      if(!_game.answers[_game.questionInPlay]) {
+        _game.answers[_game.questionInPlay] = answer;
+      } else {
+        return;
+      }
+    }
+
+
 
     var vabankValue = document.getElementById('vabank').checked;
     document.getElementById('vabank').checked = false;
@@ -47,15 +59,21 @@ Game.prototype._postInit = function Game__postInit()
     }
     else
     {
-      _game.confirmModal.title('Are you sure you want to submit an empty answer?');
-
-      _game.confirmModal.activate(function(action)
+      if(!e) // auto submit answer during the last second so e = null 
       {
-        if (action == 'yes')
+        _game.socket.write({ 'team:answer': {text: answer, vabank: vabankValue} });
+      } else
+      {
+        _game.confirmModal.title('Are you sure you want to submit an empty answer?');
+
+        _game.confirmModal.activate(function(action)
         {
-          _game.socket.write({ 'team:answer': {text: answer} });
-        }
-      });
+          if (action == 'yes')
+          {
+            _game.socket.write({ 'team:answer': {text: answer, vabank: vabankValue} });
+          }
+        });
+      } 
     }
 
   }
@@ -295,6 +313,10 @@ Game.prototype.updateTimer = function Game_updateTimer(timer)
   if (!this.user() || !this.user().login || !(team = this.getTeam(this.user().login)))
   {
     return this._team_commonUpdateTimer(timer);
+  }
+
+  if(timer && timer.tick >= 68) { //maybe should do it at 60 secs
+    this._submitAnswer(null);
   }
 
   if (timer && !(this.questionInPlay in team.answers))
