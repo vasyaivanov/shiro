@@ -1,0 +1,44 @@
+
+.mp3_control
+{
+  margin-left: 10px;
+  padding: 5px 15px;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 14px;
+  color: #cccccc;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.mp3_control:hover
+  {
+    color: #333333;
+    border-color: #999999;
+  }
+
+.mp3_stop
+{
+  position: absolute;
+  top: 8px;
+  left: 0px;
+  margin-left: 0px;
+}
+.mp3_stop:before
+{
+  content: "MP3 STOP";
+}
+
+.mp3_play
+{
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  margin-left: 0px;
+}
+.mp3_play:before
+{
+  content: "MP3 PLAY";
+}
+
