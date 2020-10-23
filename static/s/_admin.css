@@ -238,6 +238,18 @@
   content: "add new team";
 }
 
+.scoreboard_clear_chat
+{
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  margin-left: 0px;
+}
+.scoreboard_clear_chat:before
+{
+  content: "clear chat";
+}
+
 .scoreboard_reset_scoreboard
 {
   position: absolute;

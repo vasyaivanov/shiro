@@ -128,11 +128,21 @@ Chat.prototype.init = function Chat_init()
       }
     }
 
+    // [chat:clear]
+    if (data['chat:clear'])
+    {
+      this.messages = [];
+      d3.select(".log").html("");
+    }
+
+
     // personal messages
     if (data['you:message'])
     {
       _chat.addMessage(data['you:message']);
     }
+
+
 
   });
 

@@ -30,6 +30,13 @@ Game.prototype._postInit = function Game__postInit()
 
   // --- add extra events
 
+    // CHAT
+  $('.scoreboard_clear_chat').on('click', function(e)
+  {
+    e.stop();
+    _game.socket.write({ 'chat:clear': 'on' });
+  });
+
   this.socket.on('data', function primus_onData(data)
   {
     // [_:callback]
