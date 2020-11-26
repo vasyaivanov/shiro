@@ -290,6 +290,7 @@
 .scoreboard_team_dollars
 {
   margin-left: 5px;
+  display: none;
 }
 
 /* shared question & scoreboard panels */
