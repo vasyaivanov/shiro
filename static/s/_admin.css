@@ -299,6 +299,7 @@
 {
   color: #999999;
   font-size: 0.9em;
+  display: none;
 }
 
 .scoreboard_team_controls
