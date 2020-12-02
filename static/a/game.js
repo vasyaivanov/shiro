@@ -473,6 +473,9 @@ Game.prototype._drawTeamStub = function Game__drawTeamStub(_game, d)
   if(d.city){
     html += '<span class="scoreboard_team_city">('+d.city+')</span>';
   }
+  if(d.finalist){
+    html += '<span class="scoreboard_team_finalist">★FINALIST★</span>';
+  }
   html += '<span class="scoreboard_team_points">'+ d.points + 
   '<span class="scoreboard_team_fracs">.' + d.time_bonus + 
   '<span class="scoreboard_team_dollars"> $' + d.dollars + '</span>' + 

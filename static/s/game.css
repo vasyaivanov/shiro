@@ -261,7 +261,8 @@
 
 .scoreboard_team_name,
 .scoreboard_team_points,
-.scoreboard_team_city
+.scoreboard_team_city,
+.scoreboard_team_finalist
 {
   display: block;
   min-width: 90px;
@@ -276,6 +277,12 @@
 .scoreboard_team_city
 {
   font-size:0.7em;
+}
+.scoreboard_team_finalist
+{
+  font-size:0.7em;
+  font-weight: bold;
+  color: blue;
 }
 .scoreboard_team_fracs,
 .scoreboard_team_dollars
