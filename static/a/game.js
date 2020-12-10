@@ -523,11 +523,19 @@ Game.prototype._drawQuestionStub = function Game__drawQuestionStub(_game, d)
   var el = _game.d3.select(this)
     ;
 
+  var questionLabel = d.index;
+  if(d.index == 13) {
+    questionLabel = "разминка 1";
+  }
+   if(d.index == 14) {
+    questionLabel = "разминка 2";
+  }
+  
   el
     .classed('gameplay_question', true)
     .classed('gameplay_question_played', !!d.played)
     .attr('id', 'gameplay_question_'+d.index)
-    .text(d.index);
+    .text(questionLabel);
 }
 
 Game.prototype._renderTimer = function Game__renderTimer()
