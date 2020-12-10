@@ -525,10 +525,10 @@ Game.prototype._drawQuestionStub = function Game__drawQuestionStub(_game, d)
 
   var questionLabel = d.index;
   if(d.index == 13) {
-    questionLabel = "разминка 1";
+    questionLabel = "р1";
   }
    if(d.index == 14) {
-    questionLabel = "разминка 2";
+    questionLabel = "р2";
   }
   
   el
