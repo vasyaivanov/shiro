@@ -523,13 +523,17 @@ Game.prototype._drawQuestionStub = function Game__drawQuestionStub(_game, d)
   var el = _game.d3.select(this)
     ;
 
+  
   var questionLabel = d.index;
-  if(d.index == 13) {
+  if(d.index == 15) {
     questionLabel = "р1";
   }
-   if(d.index == 14) {
+  
+  /*
+  if(d.index == 14) {
     questionLabel = "р2";
   }
+  */
   
   el
     .classed('gameplay_question', true)
