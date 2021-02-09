@@ -471,7 +471,7 @@ Chat.prototype._translateUser = function Chat__translateUser(name)
 
   if (name == '_admin_admin')
   {
-    name = '<b>ВЕДУЩИЙ</b>';
+    name = '<b>GAME HOST</b>';
   }
   else if (match = name.match(/^_team_([\w_]+)$/))
   {
