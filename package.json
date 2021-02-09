@@ -41,7 +41,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js --port=5000 --admin=bauman --socket=socket.io"
+    "start": "node server.js --port=5000 --admin=assword --socket=socket.io"
   },
   "author": "",
   "license": "MIT"
