@@ -439,9 +439,13 @@ Game.prototype._renderTeams = function Game__renderTeams()
   // sort
   this.teams.sort(this._sortTeams);
 
+  var place = 1;
   for (var key in this.teams) 
   {
-    this.teams[key].place=parseInt(key)+1;
+    if(!this.teams[key].finalist){
+      this.teams[key].place=place;
+      place++;
+    }
   }
 
   item = this._container.selectAll('.scoreboard_team')
@@ -469,12 +473,17 @@ Game.prototype._drawTeamStub = function Game__drawTeamStub(_game, d)
     , html = ''
     ;
 
-  html += '<span class="scoreboard_team_name">'+d.place + '. ' + d.name+'</span>';
+  html += '<span class="scoreboard_team_name">';
+  if(!d.finalist) {
+    html += d.place + '. ';
+  }
+  html += d.name+'</span>';
+
   if(d.city){
     html += '<span class="scoreboard_team_city">('+d.city+')</span>';
   }
   if(d.finalist){
-    html += '<span class="scoreboard_team_finalist">★FINALIST★</span>';
+    html += '<span class="scoreboard_team_finalist">★PRO TEAM★</span>';
   }
   html += '<span class="scoreboard_team_points">'+ d.points + 
   '<span class="scoreboard_team_fracs">.' + d.time_bonus + 

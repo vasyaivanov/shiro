@@ -770,12 +770,18 @@ Game.prototype._drawTeamStub = function Game__drawTeamStub(_game, d)
 
   bonus = bonus < 10 ? '0'+bonus : ''+bonus;
 
-  html += '<span class="scoreboard_team_name">'+d.place + '. ' + d.name+'</span>';
+
+  html += '<span class="scoreboard_team_name">';
+  if(!d.finalist) {
+    html += d.place + '. ';
+  }
+  html += d.name+'</span>';
+
   if(d.city){
     html += '<span class="scoreboard_team_city">('+d.city+')</span>';
   }
   if(d.finalist){
-    html += '<span class="scoreboard_team_finalist">★FINALIST★</span>';
+    html += '<span class="scoreboard_team_finalist">★PRO TEAM★</span>';
   }
   html += '<span class="scoreboard_team_time_bonus">:'+bonus+'</span>';
   html += '<span class="scoreboard_team_points">'+d.points+'<span class="scoreboard_team_fracs">.'+ d.time_bonus +'</span></span>';
